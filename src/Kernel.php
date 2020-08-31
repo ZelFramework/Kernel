@@ -4,6 +4,7 @@
 namespace ZelFramework\Kernel;
 
 
+use ZelFramework\Debug\Debug;
 use ZelFramework\Router\Router;
 use Symfony\Component\HttpFoundation\Response;
 

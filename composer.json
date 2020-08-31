@@ -1,32 +1,33 @@
 {
-  "name": "zelframework/kernel",
-  "version": "v0.1.0",
-  "description": "ZelFramework Kernel",
-  "license": "MIT",
-  "minimum-stability": "stable",
-  "authors": [
-    {
-      "name": "Britzell",
-      "email": "britzel99@gmail.com"
+    "name": "zelframework/kernel",
+    "version": "v0.1.0",
+    "description": "ZelFramework Kernel",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Britzell",
+            "email": "britzel99@gmail.com"
+        }
+    ],
+    "require": {
+        "zelframework/debug": "dev-master",
+        "doctrine/orm": "^2.7",
+        "symfony/http-foundation": "^5.1",
+        "twig/twig": "^3.0"
+    },
+    "require-dev": {
+        "zelframework/router": "dev-master",
+        "phpunit/phpunit": "^9.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "ZelFramework\\Kernel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ZelFramework\\Kernel\\Tests\\": "tests/"
+        }
     }
-  ],
-  "require": {
-    "doctrine/orm": "^2.7",
-    "symfony/http-foundation": "^5.1",
-    "twig/twig": "^3.0"
-  },
-  "require-dev": {
-    "zelframework/router": "dev-master",
-    "phpunit/phpunit": "^9.3"
-  },
-  "autoload": {
-    "psr-4": {
-      "ZelFramework\\Kernel\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "ZelFramework\\Kernel\\Tests\\": "tests/"
-    }
-  }
 }

@@ -5,8 +5,8 @@ namespace ZelFramework\Kernel\Bundle\Controller;
 
 
 use Doctrine\ORM\EntityManager;
-use PHPFramework\Router\RouteCollection;
-use ZelFramework\Kernel\Dependency\Dependencies;
+use ZelFramework\Router\RouteCollection;
+use ZelFramework\Kernel\Bundle\Dependency\Dependencies;
 use ZelFramework\Kernel\Doctrine\DoctrineManager;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +24,7 @@ abstract class AbstractController
 	protected function redirectToRoute(string $route, array $parameters = [], int $status = 302)
 	{
 		$route = RouteCollection::getRouteByName($route);
-		$to = $route->getUri();
+		$to = $route->getPath();
 		
 		if ($parameters)
 			foreach ($parameters as $key => $value)

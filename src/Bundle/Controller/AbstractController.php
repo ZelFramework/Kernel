@@ -39,7 +39,7 @@ abstract class AbstractController
 	protected function render(string $view, array $parameters = []): Response
 	{
 		$response = new Response();
-		$response->setContent(Dependencies::getTwig()->render($view . 'html.twig', $parameters));
+		$response->setContent(Dependencies::getTwig()->render($view, $parameters));
 		return $response;
 	}
 	

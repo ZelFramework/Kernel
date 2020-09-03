@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ZelFramework\Kernel\Dependency;
+namespace ZelFramework\Kernel\Bundle\Dependency;
 
 use ZelFramework\Kernel\Twig\PathTwigExtension;
 use Twig\Environment;

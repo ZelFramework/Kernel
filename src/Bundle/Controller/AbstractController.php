@@ -11,8 +11,8 @@ use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormRegistry;
 use Symfony\Component\Form\ResolvedFormTypeFactory;
+use ZelFramework\Kernel\Bundle\Dependency\Dependencies;
 use ZelFramework\Router\RouteCollection;
-use ZelFramework\Kernel\Dependency\Dependencies;
 use ZelFramework\Kernel\Doctrine\DoctrineManager;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,7 +45,7 @@ abstract class AbstractController
 	protected function render(string $view, array $parameters = []): Response
 	{
 		$response = new Response();
-		$response->setContent(Dependencies::getTwig()->render($view . 'html.twig', $parameters));
+		$response->setContent(Dependencies::getTwig()->render($view, $parameters));
 		return $response;
 	}
 	

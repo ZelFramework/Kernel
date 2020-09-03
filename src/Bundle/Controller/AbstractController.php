@@ -5,7 +5,13 @@ namespace ZelFramework\Kernel\Bundle\Controller;
 
 
 use Doctrine\ORM\EntityManager;
-use PHPFramework\Router\RouteCollection;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormFactory;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormRegistry;
+use Symfony\Component\Form\ResolvedFormTypeFactory;
+use ZelFramework\Router\RouteCollection;
 use ZelFramework\Kernel\Dependency\Dependencies;
 use ZelFramework\Kernel\Doctrine\DoctrineManager;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -24,7 +30,7 @@ abstract class AbstractController
 	protected function redirectToRoute(string $route, array $parameters = [], int $status = 302)
 	{
 		$route = RouteCollection::getRouteByName($route);
-		$to = $route->getUri();
+		$to = $route->getPath();
 		
 		if ($parameters)
 			foreach ($parameters as $key => $value)
@@ -53,6 +59,20 @@ abstract class AbstractController
 		if (!isset(self::$doctrine))
 			self::$doctrine = DoctrineManager::get();
 		return self::$doctrine;
+	}
+	
+	protected function createForm(string $type, $data = null, array $options = []): FormInterface
+	{
+		$formRegistry = new FormRegistry([], new ResolvedFormTypeFactory());
+		$formFactory = new FormFactory($formRegistry);
+		return $formFactory->create($type, $data, $options);
+	}
+	
+	protected function createFormBuilder($data = null, array $options = []): FormBuilderInterface
+	{
+		$formRegistry = new FormRegistry([], new ResolvedFormTypeFactory());
+		$formFactory = new FormFactory($formRegistry);
+		return $formFactory->createBuilder(FormType::class, $data, $options);
 	}
 	
 }

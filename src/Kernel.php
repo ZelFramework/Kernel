@@ -45,6 +45,7 @@ class Kernel
 	
 	private function configureRouter(array $controller = ['/' => 'App\Controller']): void
 	{
+		$router = Configuration::get('router');
 		$this->router = new Router($controller);
 	}
 	

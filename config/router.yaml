@@ -1,0 +1,5 @@
+# config/routes.yaml
+index:
+     path: /
+     # All controller in namespace
+     namespace: App\Controller

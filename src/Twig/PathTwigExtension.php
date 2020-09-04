@@ -3,9 +3,9 @@
 namespace ZelFramework\Kernel\Twig;
 
 
-use Britzel\RouteRepository;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
+use ZelFramework\Router\RouteCollection;
 
 class PathTwigExtension extends AbstractExtension
 {
@@ -13,15 +13,15 @@ class PathTwigExtension extends AbstractExtension
     public function getFunctions()
     {
         return [
-            new TwigFunction('path', [new PathTwigExtension(), 'path'])
+            new TwigFunction('path', [$this, 'path'])
         ];
     }
 
     public function path(string $path = '/', array $params = null)
     {
         if (substr($path, 0, 1) !== '/') {
-            $route = RouteRepository::getRouteByName($path);
-            $path = $route->getUri();
+            $route = RouteCollection::getRouteByName($path);
+            $path = $route->getPath();
             if ($params) {
                 foreach ($params as $key => $value) {
                     $path = preg_replace('/\{' . $key . '\}/', $value, $path);

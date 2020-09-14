@@ -43,10 +43,17 @@ class Kernel
 		return false;
 	}
 	
-	private function configureRouter(array $controller = ['/' => 'App\Controller']): void
+	private function configureRouter(): void
 	{
 		$router = Configuration::get('router');
-		$this->router = new Router($controller);
+		$params['defaultUri'] = (isset($router['default_uri']) ? $router['default_uri'] : null);
+		unset($router['default_uri']);
+		$controller = [];
+		foreach ($router as $item) {
+			$controller[$item['path']] = $item['namespace'];
+		}
+		
+		$this->router = new Router($controller, $params);
 	}
 	
 	public function handle()

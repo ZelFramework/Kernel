@@ -1,5 +1,9 @@
 # config/routes.yaml
 index:
-     path: /
-     # All controller in namespace
-     namespace: App\Controller
+    path: /ZelFramework/Kernel/
+    namespace: ZelFramework\Kernel\Tests\Controller
+admin:
+    path: /ZelFramework/Kernel/admin/
+    namespace: ZelFramework\Kernel\Tests\Controller\Admin
+
+default_uri: /ZelFramework/Kernel/

@@ -19,7 +19,6 @@ class Configuration
 	public static function get(string $path, $return = \Exception::class)
 	{
 		$explode = self::explodeDot($path);
-		d(file_get_contents(PROJECT_DIR . 'config/' . $explode[0] . '.yaml'));
 		$content = Yaml::parseFile(PROJECT_DIR . 'config/' . $explode[0] . '.yaml');
 		
 		if (count($explode) > 0) {

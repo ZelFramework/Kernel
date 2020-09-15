@@ -4,6 +4,7 @@
 namespace ZelFramework\Kernel\Doctrine;
 
 
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 
 class DoctrineManager
@@ -18,8 +19,15 @@ class DoctrineManager
 			$_ENV['APP'] === 'dev' ? $isDevMode = true : $isDevMode = false;
 			
 			$config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode, null, null, false);
-			self::$em = \Doctrine\ORM\EntityManager::create(['url' => $_ENV['DATABASE_URL']], $config);
+			
+			$connection = [
+				'url' => $_ENV['DATABASE_URL'],
+				'password' => $_ENV['DATABASE_PASSWORD'] ?? null,
+			];
+			
+			self::$em = EntityManager::create($connection, $config);
 		}
+		
 		return self::$em;
 	}
 	
